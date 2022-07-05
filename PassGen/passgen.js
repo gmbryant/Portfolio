@@ -1,67 +1,82 @@
 function getCriteria() {
-  let text1;
-  let c1 = true;
-  let criteria1 = prompt("Include lowercase letters, Y or N?", "Y");
-  switch (criteria1.toUpperCase()) {
-    case "Y":
-      c1 = true;
-      text1 = "Lower Case is Required";
-      break;
-    case "N":
-      c1 = false;
-      text1 = "Lower Case is not Required";
-      break;
-    default:
-      return;
-  }
-  let text2;
-  let c2 = true;
-  let criteria2 = prompt("Include uppercase letters?", "Y");
-  switch (criteria2.toUpperCase()) {
-    case "Y":
-      c2 = true;
-      text2 = "Upper Case is Required";
-      break;
-    case "N":
-      c2 = false;
-      text2 = "Upper Case is not Required";
-      break;
-    default:
-      return;
-  }
-  let text3;
-  let c3 = true;
-  let criteria3 = prompt("Include numbers", "Y");
-  switch (criteria3.toUpperCase()) {
-    case "Y":
-      c3 = true;
-      text3 = "A Number is Required";
-      break;
-    case "N":
-      c3 = false;
-      text3 = "A Number is not Required";
-      break;
-    default:
-      return;
-  }
-  let text4;
-  let c4 = true;
-  let criteria4 = prompt("Include symbols?", "Y");
-  switch (criteria4.toUpperCase()) {
-    case "Y":
-      c4 = true;
-      text4 = "Symbol is Required";
-      break;
-    case "N":
-      c4 = false;
-      text4 = "Symbol is not Required";
-      break;
-    default:
-      text4 = "Symbol is Required";
-  }
+  let length = 0;
+  let c1 = true, c2 = true, c3 = true, c4 = true;
+  let criteria1 = "";
+  let criteria2 = "";
+  let criteria3 = "";
+  let criteria4 = "";
+  let verifyCount = 0;
 
-  const typesCount = c1 + c2 + c3 + c4;
-  let length = prompt("Password Length - miniumum of " + typesCount);
+  do {
+    length = prompt("Password Length - between 8 and 128");
+    if (length == null) { return; }
+    if (length < 8 || length > 128) {
+      alert("Length Must be Between 8 and 128");
+    }
+  } while (length < 8 || length > 128);
+
+  do {
+    criteria1 = prompt("Include lowercase letters, Y or N?", "Y");
+    switch (criteria1.toUpperCase()) {
+      case "Y":
+        c1 = true;
+        break;
+      case "N":
+        c1 = false;
+        break;
+      case null:
+        return;
+      default:
+        c1 = true;
+    }
+
+    criteria2 = prompt("Include uppercase letters?", "Y");
+    switch (criteria2.toUpperCase()) {
+      case "Y":
+        c2 = true;
+        break;
+      case "N":
+        c2 = false;
+        break;
+      case null:
+        return;
+      default:
+        c2 = true;
+    }
+
+    criteria3 = prompt("Include numbers?", "Y");
+    switch (criteria3.toUpperCase()) {
+      case "Y":
+        c3 = true;
+        break;
+      case "N":
+        c3 = false;
+        break;
+      case null:
+        return;
+      default:
+        c3 = true;
+    }
+
+    criteria4 = prompt("Include symbols?", "Y");
+    switch (criteria4.toUpperCase()) {
+      case "Y":
+        c4 = true;
+        break;
+      case "N":
+        c4 = false;
+        break;
+      case null:
+        return;
+      default:
+        c4 = true;
+    }
+
+    verifyCount = c1 + c2 + c3 + c4;
+    if (verifyCount === 0) {
+      alert("You Must include at Least One Type of Character - Try Again");
+    }
+  } while (verifyCount < 1);
 
   randomResult.value = randomPassword(
     c1,
@@ -73,6 +88,7 @@ function getCriteria() {
 }
 
 function randomPassword(c1, c2, c3, c4, length) {
+
   let password = "";
   const Func = {
     c1: getRandomLower,
@@ -84,11 +100,6 @@ function randomPassword(c1, c2, c3, c4, length) {
   const typesCount = c1 + c2 + c3 + c4;
   const typesArray = [{ c1 }, { c2 }, { c3 }, { c4 }].filter
     (item => Object.values(item)[0]);
-  console.log('typesArray: ', typesArray);
-
-  if (typesCount === 0) {
-    return '';
-  }
 
   for (let i = 0; i < length; i += typesCount) {
     typesArray.forEach(type => {
@@ -98,7 +109,6 @@ function randomPassword(c1, c2, c3, c4, length) {
   }
 
   const returnPassword = password.slice(0, length);
-  console.log(returnPassword);
   return returnPassword;
 }
 
