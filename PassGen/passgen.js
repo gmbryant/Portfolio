@@ -10,10 +10,15 @@ function getCriteria() {
   do {
     length = prompt("Password Length - between 8 and 128");
     if (length == null) { return; }
-    if (length < 8 || length > 128) {
-      alert("Length Must be Between 8 and 128");
+    if (isNaN(length)) {
+      alert("Input is not a number; Enter a Value Between 8 and 128");
     }
-  } while (length < 8 || length > 128);
+    else {
+      if (length < 8 || length > 128) {
+        alert("Length Must be Between 8 and 128");
+      }
+    }
+  } while (length < 8 || length > 128 || isNaN(length));
 
   do {
     criteria1 = prompt("Include lowercase letters, Y or N?", "Y");
