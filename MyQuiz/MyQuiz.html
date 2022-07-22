@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Quiz</title>
+  <link rel="stylesheet" href="myquiz.css">
+</head>
+
+<body>
+
+  <div class="topBar">
+    <div id="highScores">
+      <a href="#showScore">View HighScores</a>
+    </div>
+    <div id="seconds">Time: 0</div>
+  </div>
+  <div id="openQuiz">
+    <div class="quizStart">
+      <h1>iSeries Quiz Challenge</h1>
+      <div class="about">This is a quiz about IBM iSeries and
+        RPG coding. Try to answer all questions in the time limit of
+        60 seconds. Correct answers will be scored with one point. </div>
+      <button id="start" type="button">Start Quiz</button>
+
+    </div>
+  </div>
+
+  <div id="question1" hidden>
+    <div class="questionContainer">
+      <h2> What operation code can be used to read
+        data from a SQL cursor?
+      </h2>
+      <form name="form1">
+        <input type="radio" id="chain" name="sql_read" value="Chain">
+        <label for="chain">Chain</label><br>
+        <input type="radio" id="fetch" name="sql_read" value="Fetch">
+        <label for="fetch">Fetch</label><br>
+        <input type="radio" id="reade" name="sql_read" value="Reade">
+        <label for="reade">Reade</label><br>
+        <input type="radio" id="sflnxtchg" name="sql_read" value="Sflnxtchg">
+        <label for="sflnxtchg">Sflnxtchg</label><br>
+        <input type="button" id="formbutton" onclick="question2()" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="question2" hidden>
+    <div class="questionContainer">
+      <h2> "*ENTRY PLIST" can be replaced with what type of code?
+
+      </h2>
+      <form name="form2">
+        <input type="radio" id="keylist" name="entry_plist" value="KeyList">
+        <label for="keylist">Key List</label><br>
+        <input type="radio" id="array" name="entry_plist" value="Array">
+        <label for="array">Array</label><br>
+        <input type="radio" id="multipleDs" name="entry_plist" value="MultipleDS ">
+        <label for="reade">Mulitple Occurence Data Structure</label><br>
+        <input type="radio" id="pI" name="entry_plist" value="PI">
+        <label for="pI">Procedure Interface</label><br>
+        <input type="button" id="formbutton" onclick="question3()" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="question3" hidden>
+    <div class="questionContainer">
+      <h2> What is the value of i after the for loop?
+      </h2>
+      <div>for i=1 by 1 to 100;<br>
+        if %subst("what now?",5,1) = ' ';<br>
+        leave;<br>
+        endif;<br>
+        endfor;<br>
+        <br>
+      </div>
+
+      <form name="form3">
+        <input type="radio" id="ans0" name="forloop" value="0">
+        <label for="0">0 - the loop never executes</label><br>
+        <input type="radio" id="ans1" name="forloop" value="1">
+        <label for="1">1</label><br>
+        <input type="radio" id="ans5" name="forloop" value="5">
+        <label for="5">5</label><br>
+        <input type="radio" id="ans100" name="forloop" value="100">
+        <label for="5">100</label><br>
+        <input type="button" id="formbutton" onclick="question4()" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="question4" hidden>
+    <div class="questionContainer">
+      <h2> T or F? A module is a runnable object.
+
+      </h2>
+      <form name="form4">
+        <input type="radio" id="modtrue" name="moduletf" value="ModTrue">
+        <label for="modtrue">True</label><br>
+        <input type="radio" id="modfalse" name="moduletf" value="ModFalse">
+        <label for="modfalse">False</label><br>
+        <input type="button" id="formbutton" onclick="allDone()" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="allDone" hidden>
+    <div class="questionContainer">
+      <h2 id="finished"> All Done!
+
+      </h2>
+      <div id="yourScore">
+        Your Score is:
+      </div>
+      <form name="nameform">
+        Enter your name: <input type="text" name="yourname"><br>
+        <input type="button" id="formbutton" onclick="saveScore()" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <div id="showScore" hidden>
+    <div class="scoreContainer">
+      <h2> High Scores!
+      </h2>
+      <div id="scores">
+        your name: 0
+      </div>
+    </div>
+  </div>
+
+  <script src="myquiz.js"></script>
+</body>
+
+</html>
